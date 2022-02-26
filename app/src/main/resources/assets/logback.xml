@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="https://tony19.github.io/logback-android/xml"
+  xsi:schemaLocation="https://tony19.github.io/logback-android/xml https://cdn.jsdelivr.net/gh/tony19/logback-android/logback.xsd"
+  debug="true">
+
+  <appender name="logcat" class="ch.qos.logback.classic.android.LogcatAppender">
+    <encoder>
+      <pattern>[%thread] %msg</pattern>
+    </encoder>
+  </appender>
+
+  <property name="LOG_DIR" value="/storage/emulated/0/documents/logs" />
+  <appender name="file" class="ch.qos.logback.core.FileAppender">
+    <file>${LOG_DIR}/log_file.txt</file>
+    <append>true</append>
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{40} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="DEBUG">
+    <appender-ref ref="logcat" />
+    <appender-ref ref="file" />
+  </root>
+</configuration>

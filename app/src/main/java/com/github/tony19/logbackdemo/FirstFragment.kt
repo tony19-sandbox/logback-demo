@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.github.tony19.logbackdemo.databinding.FragmentFirstBinding
+import org.slf4j.LoggerFactory
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -35,10 +37,20 @@ class FirstFragment : Fragment() {
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
+
+        binding.buttonWriteLog.setOnClickListener {
+            writeLog()
+            Toast.makeText(context, "Log written", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun writeLog() {
+        val logger = LoggerFactory.getLogger(javaClass.simpleName)
+        logger.info("hello world")
     }
 }
