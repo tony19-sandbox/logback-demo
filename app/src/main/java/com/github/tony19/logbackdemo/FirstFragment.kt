@@ -64,7 +64,7 @@ class FirstFragment : Fragment() {
     }
 
     private fun writeLog() {
-        if ((Build.VERSION.SDK_INT >= 30 && !hasAllFilesPermission()) || !hasStoragePermission()) {
+        if ((Build.VERSION.SDK_INT >= 30 && !hasAllFilesPermission()) || (Build.VERSION.SDK_INT < 30 && !hasStoragePermission())) {
             Toast.makeText(context, "Permission denied", Toast.LENGTH_SHORT).show()
             return
         }
